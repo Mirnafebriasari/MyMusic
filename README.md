@@ -141,11 +141,9 @@ res/
 
 ### Cara 1 — Via APK (Mudah)
 
-1. Buka repository GitHub ini:
-   `https://github.com/Mirnafebriasari/MyMusic`
-2. Download file APK di:
-   `app → build → outputs → apk → debug → app-debug.apk`
-   Klik file `app-debug.apk` → klik tombol **Download**
+1. Buka halaman Releases di GitHub:
+   `https://github.com/Mirnafebriasari/MyMusic/releases/tag/v1.0.0`
+2. Klik file `app-debug.apk` → otomatis download
 3. Pindahkan file APK ke HP Android
 4. Aktifkan **Install from unknown sources** di HP:
    `Pengaturan → Keamanan → Install from unknown sources → ON`
