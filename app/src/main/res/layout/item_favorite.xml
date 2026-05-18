@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_favorite.xml — UPDATED
+    Perubahan: tambah ivOfflineBadge (ikon kecil hijau di sudut cover)
+    yang tampil saat lagu sudah tersimpan secara offline.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="10dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Cover + badge offline di sudut kanan-bawah -->
+    <FrameLayout
+        android:layout_width="52dp"
+        android:layout_height="52dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/imgSong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/cd_song_thumbnail"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--
+            Badge kecil "tersimpan offline".
+            Tampil (VISIBLE) kalau isDownloaded() = true,
+            sembunyi (GONE) kalau belum didownload.
+        -->
+        <ImageView
+            android:id="@+id/ivOfflineBadge"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="2dp"
+            android:src="@android:drawable/stat_sys_download_done"
+            android:contentDescription="Tersimpan offline"
+            android:visibility="gone"
+            app:tint="#4CAF50"/>
+
+    </FrameLayout>
+
+    <!-- Title + Artist -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_song_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_artist_name"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+
+</LinearLayout>

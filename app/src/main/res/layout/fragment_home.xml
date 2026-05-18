@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <!-- Search bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="22dp"
+            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="14dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:contentDescription="@string/cd_search"
+                    app:tint="?attr/colorOnSurfaceVariant"/>
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/hint_search"
+                    android:textColorHint="?attr/colorOnSurfaceVariant"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:paddingStart="10dp"
+                    android:maxLines="1"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--
+            Icon ini sekarang berfungsi ganda:
+            1. Menampilkan history (fungsi asli)
+            2. Sebagai tombol "Coba Lagi / Retry" saat mode offline
+            Selalu terlihat di search bar, tidak perlu show/hide.
+        -->
+        <ImageView
+            android:id="@+id/btnHistory"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/retry"
+            android:contentDescription="@string/cd_history"
+            android:padding="10dp"
+            android:layout_marginStart="6dp"
+            app:tint="?attr/colorOnSurfaceVariant"/>
+
+    </LinearLayout>
+
+    <!-- Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="?attr/colorSurface"
+        app:tabTextColor="?attr/colorOnSurfaceVariant"
+        app:tabSelectedTextColor="#BB86FC"
+        app:tabIndicatorColor="#BB86FC"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"/>
+
+    <!-- Banner offline -->
+    <LinearLayout
+        android:id="@+id/bannerOffline"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="#CC6600"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/banner_offline_mode"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/banner_offline_hint"
+            android:textSize="11sp"
+            android:textColor="#FFE0B2"/>
+
+    </LinearLayout>
+
+    <!-- Play all row -->
+    <LinearLayout
+        android:id="@+id/layoutPlayAll"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnPlayAllIcon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:cardCornerRadius="22dp"
+            app:cardBackgroundColor="#BB86FC"
+            app:cardElevation="4dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_media_play"
+                android:contentDescription="@string/cd_play_all"
+                android:padding="12dp"
+                app:tint="#000000"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/btnPlayAllLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_play_all"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginStart="14dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvSongCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/btnSortMenu"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/baseline_arrow"
+            android:contentDescription="@string/cd_more_options"
+            android:padding="4dp"
+            app:tint="?attr/colorOnSurfaceVariant"/>
+
+    </LinearLayout>
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"/>
+
+    <!-- Error + Retry (hanya saat tidak ada data offline sama sekali) -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="60dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_no_internet"
+            android:textSize="48sp"/>
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#FF6B6B"
+            android:textSize="14sp"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_retry"
+            android:textColor="#000000"
+            android:backgroundTint="#BB86FC"
+            android:paddingHorizontal="32dp"
+            style="@style/Widget.Material3.Button"/>
+
+    </LinearLayout>
+
+    <!-- Song list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"/>
+
+</LinearLayout>
