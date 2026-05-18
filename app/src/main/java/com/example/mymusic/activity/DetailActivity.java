@@ -116,10 +116,6 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Pilih path terbaik:
-     * file lokal jika sudah didownload, fallback ke URL online.
-     */
     private String resolvePlaybackPath(int index) {
         long songId = ids.get(index);
         if (repository.isDownloaded(songId)) {

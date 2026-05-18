@@ -29,8 +29,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
-    // INI YANG PALING PENTING - WAJIB ADA
+    
     buildFeatures {
         viewBinding = true
     }

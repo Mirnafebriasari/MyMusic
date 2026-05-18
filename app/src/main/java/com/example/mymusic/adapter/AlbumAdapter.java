@@ -48,7 +48,6 @@ public class AlbumAdapter extends
     @Override
     public int getItemCount() { return albumList.size(); }
 
-    // ---- Update helper ----
     public void updateList(List<AlbumItem> newList) {
         int oldSize = albumList.size();
         albumList.clear();
@@ -57,7 +56,6 @@ public class AlbumAdapter extends
         if (!newList.isEmpty()) notifyItemRangeInserted(0, newList.size());
     }
 
-    // ---- ViewHolder ----
     public static class AlbumViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemAlbumBinding binding;

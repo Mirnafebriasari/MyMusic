@@ -21,13 +21,11 @@ public class NetworkUtil {
             NetworkCapabilities caps = cm.getNetworkCapabilities(activeNetwork);
             if (caps == null) return false;
 
-            // Cek apakah ada transport yang aktif (WiFi, cellular, ethernet)
             return caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
                     || caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
                     || caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
                     || caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
         } else {
-            // Fallback untuk Android < 6
             android.net.NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
             return activeNetworkInfo != null && activeNetworkInfo.isConnected();
         }

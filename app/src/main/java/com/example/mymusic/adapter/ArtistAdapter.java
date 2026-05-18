@@ -49,7 +49,6 @@ public class ArtistAdapter extends
     @Override
     public int getItemCount() { return artistList.size(); }
 
-    // ---- Update helper ----
     public void updateList(List<ArtistItem> newList) {
         int oldSize = artistList.size();
         artistList.clear();
@@ -58,7 +57,6 @@ public class ArtistAdapter extends
         if (!newList.isEmpty()) notifyItemRangeInserted(0, newList.size());
     }
 
-    // ---- ViewHolder ----
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemArtistBinding binding;

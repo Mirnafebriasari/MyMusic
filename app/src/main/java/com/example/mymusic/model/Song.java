@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Song {
 
     @SerializedName("id")
-    private long id;        // ← GANTI dari int ke long
+    private long id;
 
     @SerializedName("title")
     private String title;
@@ -19,7 +19,7 @@ public class Song {
     @SerializedName("album")
     private Album album;
 
-    public long getId()        { return id; }   // ← long
+    public long getId()        { return id; }
     public String getTitle()   { return title; }
     public String getPreview() { return preview; }
     public Artist getArtist()  { return artist; }

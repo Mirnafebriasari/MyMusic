@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="?attr/colorSurface">
 
-    <!-- ===== HEADER: Back + Title + Artist ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,14 +57,13 @@
 
         </LinearLayout>
 
-        <!-- Spacer simetris agar title benar-benar di tengah -->
         <View
             android:layout_width="36dp"
             android:layout_height="36dp"/>
 
     </LinearLayout>
 
-    <!-- ===== COVER ART ===== -->
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -92,7 +90,6 @@
 
     </FrameLayout>
 
-    <!-- ===== SEEKBAR + WAKTU ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -144,9 +141,6 @@
 
     </LinearLayout>
 
-    <!-- ===== KONTROL PLAYER =====
-         LinearLayout dengan layout_weight equal → semua slot sama lebar,
-         gravity center_vertical → semua icon sejajar tengah. -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,7 +150,6 @@
         android:paddingTop="8dp"
         android:paddingBottom="36dp">
 
-        <!-- Repeat — slot 1 -->
         <ImageView
             android:id="@+id/btnRepeat"
             android:layout_width="0dp"
@@ -168,7 +161,6 @@
             android:scaleType="fitCenter"
             app:tint="?attr/colorOnSurfaceVariant"/>
 
-        <!-- Prev — slot 2 -->
         <ImageView
             android:id="@+id/btnPrev"
             android:layout_width="0dp"
@@ -180,7 +172,6 @@
             android:scaleType="fitCenter"
             app:tint="?attr/colorOnSurface"/>
 
-        <!-- Play / Pause — slot 3 (CENTER, ukuran tetap 72dp) -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="72dp"
@@ -223,7 +214,6 @@
 
         </FrameLayout>
 
-        <!-- Next — slot 4 -->
         <ImageView
             android:id="@+id/btnNext"
             android:layout_width="0dp"
@@ -235,7 +225,6 @@
             android:scaleType="fitCenter"
             app:tint="?attr/colorOnSurface"/>
 
-        <!-- Favorite — slot 5 -->
         <ImageView
             android:id="@+id/btnFavorite"
             android:layout_width="0dp"

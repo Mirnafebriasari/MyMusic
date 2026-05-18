@@ -18,26 +18,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Menangani download file preview MP3 ke penyimpanan internal aplikasi.
- *
- * Cara kerja:
- *  1. Buat direktori  getFilesDir()/previews/  (jika belum ada)
- *  2. Download file dengan OkHttp ke path  previews/{songId}.mp3
- *  3. Update kolom localPath di Room database
- *  4. Callback ke UI thread via Handler
- *
- * File disimpan di internal storage (tidak butuh izin WRITE_EXTERNAL_STORAGE).
- */
 public class PreviewDownloadManager {
 
     private static final String TAG        = "PreviewDownload";
     private static final String DIR_NAME   = "previews";
 
     public interface DownloadCallback {
-        /** Dipanggil di main thread saat download berhasil */
         void onSuccess(long songId, String localPath);
-        /** Dipanggil di main thread saat download gagal */
         void onFailure(long songId, String errorMessage);
     }
 
@@ -55,13 +42,6 @@ public class PreviewDownloadManager {
         this.mainHandler = new Handler(Looper.getMainLooper());
     }
 
-    /**
-     * Mulai download preview MP3 untuk lagu tertentu.
-     *
-     * @param songId   ID lagu (dipakai sebagai nama file)
-     * @param previewUrl URL preview 30-detik dari Deezer
-     * @param callback callback hasil download (opsional, boleh null)
-     */
     public void download(long songId, String previewUrl, DownloadCallback callback) {
         if (previewUrl == null || previewUrl.isEmpty()) {
             if (callback != null) {
@@ -74,7 +54,6 @@ public class PreviewDownloadManager {
         executor.execute(() -> {
             File targetFile = getTargetFile(songId);
 
-            // Kalau sudah ada, tidak perlu download ulang
             if (targetFile.exists() && targetFile.length() > 0) {
                 String path = targetFile.getAbsolutePath();
                 db.songDao().updateLocalPath(songId, path);
@@ -94,13 +73,11 @@ public class PreviewDownloadManager {
                         throw new IOException("Response gagal: " + response.code());
                     }
 
-                    // Pastikan direktori ada
                     File dir = targetFile.getParentFile();
                     if (dir != null && !dir.exists()) {
                         dir.mkdirs();
                     }
 
-                    // Tulis ke file sementara dulu, rename setelah selesai
                     File tmpFile = new File(dir, songId + ".tmp");
 
                     try (InputStream  in  = response.body().byteStream();
@@ -114,7 +91,6 @@ public class PreviewDownloadManager {
                         out.flush();
                     }
 
-                    // Rename tmp → final
                     if (!tmpFile.renameTo(targetFile)) {
                         tmpFile.delete();
                         throw new IOException("Gagal rename file sementara");
@@ -122,7 +98,6 @@ public class PreviewDownloadManager {
 
                     String path = targetFile.getAbsolutePath();
 
-                    // Simpan ke database
                     db.songDao().updateLocalPath(songId, path);
 
                     Log.d(TAG, "Download selesai: " + path);
@@ -134,7 +109,6 @@ public class PreviewDownloadManager {
 
             } catch (Exception e) {
                 Log.e(TAG, "Download gagal untuk songId=" + songId, e);
-                // Hapus file korup jika ada
                 if (targetFile.exists()) targetFile.delete();
 
                 if (callback != null) {
@@ -144,9 +118,6 @@ public class PreviewDownloadManager {
         });
     }
 
-    /**
-     * Hapus file lokal MP3 saat lagu dihapus dari favorit.
-     */
     public void deleteLocalFile(long songId) {
         executor.execute(() -> {
             File file = getTargetFile(songId);
@@ -154,20 +125,15 @@ public class PreviewDownloadManager {
                 boolean deleted = file.delete();
                 Log.d(TAG, "Delete file " + file.getName() + ": " + deleted);
             }
-            // Bersihkan path di database
             db.songDao().updateLocalPath(songId, null);
         });
     }
 
-    /**
-     * Apakah file lokal untuk lagu ini sudah ada?
-     */
     public boolean isDownloaded(long songId) {
         File file = getTargetFile(songId);
         return file.exists() && file.length() > 0;
     }
 
-    // ------------------------------------------------------------------ //
 
     private File getTargetFile(long songId) {
         File dir = new File(context.getFilesDir(), DIR_NAME);

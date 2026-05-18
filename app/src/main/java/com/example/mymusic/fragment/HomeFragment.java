@@ -64,9 +64,7 @@ public class HomeFragment extends Fragment {
     private final List<AlbumItem>  albumList  = new ArrayList<>();
     private final List<Song>       masterList = new ArrayList<>();
 
-    // ------------------------------------------------------------------ //
     //  Lifecycle
-    // ------------------------------------------------------------------ //
 
     @Nullable
     @Override
@@ -93,9 +91,6 @@ public class HomeFragment extends Fragment {
 
         fetchFromApi("top hits");
 
-        // Satu listener retry dipakai oleh dua tombol:
-        // - btnRetry    → di dalam layoutError (tidak ada data offline)
-        // - btnHistory  → icon history di search bar (ada data offline)
         View.OnClickListener retryClick = v -> {
             binding.layoutError.setVisibility(View.GONE);
             binding.bannerOffline.setVisibility(View.GONE);
@@ -107,7 +102,6 @@ public class HomeFragment extends Fragment {
         };
 
         binding.btnRetry.setOnClickListener(retryClick);
-        // btnHistory sekarang sekaligus berfungsi sebagai tombol retry saat offline
         binding.btnHistory.setOnClickListener(retryClick);
     }
 
@@ -117,9 +111,7 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    // ------------------------------------------------------------------ //
     //  Setup
-    // ------------------------------------------------------------------ //
 
     private void setupAdapters() {
         songAdapter = new SongAdapter(songList, song -> {
@@ -274,9 +266,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // ------------------------------------------------------------------ //
+
     //  Tab display
-    // ------------------------------------------------------------------ //
 
     private void showSongTab() {
         binding.recyclerView.setAdapter(songAdapter);
@@ -314,9 +305,8 @@ public class HomeFragment extends Fragment {
             binding.tvSongCount.setText(items.size() + " albums");
     }
 
-    // ------------------------------------------------------------------ //
+
     //  Builders
-    // ------------------------------------------------------------------ //
 
     private List<ArtistItem> buildArtistItems(List<Song> songs) {
         Map<String, List<Song>> byArtist = new LinkedHashMap<>();
@@ -356,9 +346,7 @@ public class HomeFragment extends Fragment {
         return result;
     }
 
-    // ------------------------------------------------------------------ //
     //  Sort
-    // ------------------------------------------------------------------ //
 
     private void applySortToCurrentTab() {
         switch (currentTab) {
@@ -401,9 +389,7 @@ public class HomeFragment extends Fragment {
         if (binding != null) binding.tvSongCount.setText(items.size() + " albums");
     }
 
-    // ------------------------------------------------------------------ //
     //  Filter
-    // ------------------------------------------------------------------ //
 
     private void filterCurrentTab(String query) {
         switch (currentTab) {
@@ -483,9 +469,7 @@ public class HomeFragment extends Fragment {
         return titleMatch || artistMatch;
     }
 
-    // ------------------------------------------------------------------ //
     //  Networking
-    // ------------------------------------------------------------------ //
 
     private void fetchFromApi(String query) {
         binding.progressBar.setVisibility(View.VISIBLE);
@@ -533,9 +517,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // ------------------------------------------------------------------ //
     //  Offline fallback
-    // ------------------------------------------------------------------ //
 
     private void showOfflineFallback() {
         if (binding == null) return;
@@ -556,12 +538,9 @@ public class HomeFragment extends Fragment {
                 binding.progressBar.setVisibility(View.GONE);
 
                 if (converted.isEmpty()) {
-                    // Tidak ada data offline sama sekali → tampilkan error + btnRetry
                     binding.layoutError.setVisibility(View.VISIBLE);
                     binding.tvError.setText(getString(R.string.msg_offline_no_data));
                 } else {
-                    // Ada data favorit → tampilkan list + banner offline
-                    // btnHistory di search bar sudah selalu terlihat dan siap di-klik untuk retry
                     masterList.clear();
                     masterList.addAll(converted);
 
@@ -596,9 +575,7 @@ public class HomeFragment extends Fragment {
         return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 
-    // ------------------------------------------------------------------ //
     //  Helpers
-    // ------------------------------------------------------------------ //
 
     private void updateSongCount() {
         if (binding == null) return;

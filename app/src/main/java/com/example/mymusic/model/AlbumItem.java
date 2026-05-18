@@ -1,9 +1,5 @@
 package com.example.mymusic.model;
 
-/**
- * Model untuk menampilkan satu baris di tab Album.
- * Berisi judul album, cover, nama artis, dan jumlah lagu di album tersebut.
- */
 public class AlbumItem {
 
     private final String title;

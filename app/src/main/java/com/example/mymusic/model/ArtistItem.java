@@ -1,13 +1,9 @@
 package com.example.mymusic.model;
 
-/**
- * Model untuk menampilkan satu baris di tab Artis.
- * Berisi nama artis, foto artis, dan jumlah lagu milik artis tersebut.
- */
 public class ArtistItem {
 
     private final String name;
-    private final String pictureUrl; // bisa dari Artist.getPictureMedium() atau album cover
+    private final String pictureUrl;
     private final int    songCount;
 
     public ArtistItem(String name, String pictureUrl, int songCount) {

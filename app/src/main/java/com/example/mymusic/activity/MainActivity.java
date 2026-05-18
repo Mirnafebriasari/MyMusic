@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Apply theme sebelum super.onCreate()
         SharedPrefManager prefManager = new SharedPrefManager(this);
         ThemeHelper.applyTheme(prefManager.isDarkMode());
 
@@ -28,15 +27,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Ambil NavController dari NavHostFragment
         NavHostFragment navHostFragment = (NavHostFragment)
                 getSupportFragmentManager()
                         .findFragmentById(R.id.nav_host_fragment);
 
         NavController navController = navHostFragment.getNavController();
-
-        // Hubungkan BottomNavigationView dengan NavController
-        // NavigationUI otomatis handle perpindahan fragment
         NavigationUI.setupWithNavController(
                 binding.bottomNavigation,
                 navController

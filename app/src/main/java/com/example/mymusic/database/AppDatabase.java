@@ -8,14 +8,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-/**
- * PERUBAHAN:
- *  • version: 1 → 2
- *  • Migrasi MIGRATION_1_2: tambah kolom localPath (TEXT, nullable)
- *
- *  Jika Anda ingin reset bersih (dev only), bisa pakai fallbackToDestructiveMigration()
- *  dan hapus MIGRATION_1_2, namun data lama akan hilang.
- */
+
 @Database(
         entities = {SongEntity.class},
         version  = 2,
@@ -27,7 +20,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract SongDao songDao();
 
-    /** Migrasi 1 → 2: tambah kolom localPath */
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {

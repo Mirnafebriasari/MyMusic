@@ -14,7 +14,6 @@ public class SharedPrefManager {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    // Default FALSE = light mode saat pertama kali buka app
     public boolean isDarkMode() {
         return prefs.getBoolean(KEY_DARK_MODE, false);
     }

@@ -19,8 +19,6 @@ public class MusicPlayerManager {
             mediaPlayer.setDataSource(previewUrl);
             mediaPlayer.prepare();
             mediaPlayer.start();
-
-            // Tandai finished saat lagu selesai
             mediaPlayer.setOnCompletionListener(mp -> finished = true);
 
         } catch (IOException e) {
@@ -69,7 +67,6 @@ public class MusicPlayerManager {
         return mediaPlayer != null && mediaPlayer.isPlaying();
     }
 
-    /** true jika lagu sudah selesai diputar sampai habis */
     public boolean isFinished() {
         return finished;
     }

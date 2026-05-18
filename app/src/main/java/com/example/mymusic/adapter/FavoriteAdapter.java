@@ -64,8 +64,6 @@ public class FavoriteAdapter extends
                     .centerCrop()
                     .into(binding.imgSong);
 
-            // ---- Badge offline (ikon kecil di sudut) ----
-            // Tampilkan badge "tersimpan offline" jika file lokal sudah ada
             if (binding.ivOfflineBadge != null) {
                 binding.ivOfflineBadge.setVisibility(
                         song.isDownloaded() ? View.VISIBLE : View.GONE);

@@ -19,23 +19,16 @@ public class SongRepository {
         this.downloadManager = new PreviewDownloadManager(context);
     }
 
-    /**
-     * Insert lagu ke favorit dan otomatis download preview MP3-nya.
-     */
     public void insertSong(SongEntity song,
                            PreviewDownloadManager.DownloadCallback callback) {
         songDao.insertSong(song);
         downloadManager.download(song.getId(), song.getPreview(), callback);
     }
 
-    /** Overload tanpa callback */
     public void insertSong(SongEntity song) {
         insertSong(song, null);
     }
 
-    /**
-     * Hapus lagu dari favorit dan hapus file MP3 lokal-nya.
-     */
     public void deleteSong(SongEntity song) {
         songDao.deleteSong(song);
         downloadManager.deleteLocalFile(song.getId());

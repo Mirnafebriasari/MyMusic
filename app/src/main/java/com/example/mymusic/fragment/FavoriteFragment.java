@@ -45,7 +45,6 @@ public class FavoriteFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // SongRepository sekarang butuh Context untuk PreviewDownloadManager
         repository = new SongRepository(
                 AppDatabase.getInstance(requireContext()),
                 requireContext()
@@ -64,7 +63,6 @@ public class FavoriteFragment extends Fragment {
                     intent.putExtra(Constants.EXTRA_TITLE,   song.getTitle());
                     intent.putExtra(Constants.EXTRA_ARTIST,  song.getArtist());
                     intent.putExtra(Constants.EXTRA_COVER,   song.getCover());
-                    // Gunakan path terbaik: lokal jika ada, online jika tidak
                     intent.putExtra(Constants.EXTRA_PREVIEW, song.getPlaybackPath());
                     startActivity(intent);
                 }

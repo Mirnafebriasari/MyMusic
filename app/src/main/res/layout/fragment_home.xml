@@ -56,12 +56,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!--
-            Icon ini sekarang berfungsi ganda:
-            1. Menampilkan history (fungsi asli)
-            2. Sebagai tombol "Coba Lagi / Retry" saat mode offline
-            Selalu terlihat di search bar, tidak perlu show/hide.
-        -->
         <ImageView
             android:id="@+id/btnHistory"
             android:layout_width="44dp"
@@ -186,7 +180,6 @@
         android:layout_marginTop="40dp"
         android:visibility="gone"/>
 
-    <!-- Error + Retry (hanya saat tidak ada data offline sama sekali) -->
     <LinearLayout
         android:id="@+id/layoutError"
         android:layout_width="match_parent"

@@ -16,7 +16,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Apply theme sebelum setContentView
         SharedPrefManager prefManager = new SharedPrefManager(this);
         ThemeHelper.applyTheme(prefManager.isDarkMode());
 

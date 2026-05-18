@@ -11,7 +11,6 @@
     android:paddingVertical="10dp"
     android:background="?attr/selectableItemBackground">
 
-    <!-- Cover album – kotak dengan sudut membulat -->
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -68,7 +67,5 @@
             android:layout_marginTop="2dp"/>
 
     </LinearLayout>
-
-    <!-- Ikon panah kanan -->
 
 </LinearLayout>

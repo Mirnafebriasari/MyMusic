@@ -16,18 +16,18 @@ public class Constants {
     public static final String PREF_NAME = "music_app_pref";
     public static final String DARK_MODE = "dark_mode";
 
-    // Intent extras — lagu tunggal
+    // Intent extras
     public static final String EXTRA_ID      = "id";
     public static final String EXTRA_TITLE   = "title";
     public static final String EXTRA_ARTIST  = "artist";
     public static final String EXTRA_PREVIEW = "preview";
     public static final String EXTRA_COVER   = "cover";
 
-    // Intent extras — untuk Previous/Next
-    public static final String EXTRA_POSITION       = "position";       // posisi lagu diklik
-    public static final String EXTRA_TITLES         = "titles";         // ArrayList<String>
+    // Intent extras
+    public static final String EXTRA_POSITION       = "position";
+    public static final String EXTRA_TITLES         = "titles";
     public static final String EXTRA_ARTISTS        = "artists";
     public static final String EXTRA_COVERS         = "covers";
     public static final String EXTRA_PREVIEWS       = "previews";
-    public static final String EXTRA_IDS            = "ids";            // ArrayList<Long>
+    public static final String EXTRA_IDS            = "ids";
 }
