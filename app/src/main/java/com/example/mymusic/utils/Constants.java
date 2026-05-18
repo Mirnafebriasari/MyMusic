@@ -7,7 +7,7 @@ public class Constants {
             "https://deezerdevs-deezer.p.rapidapi.com/";
 
     public static final String API_KEY =
-            "cd9fa8192fmsh5f017c9ac82c90bp198ef7jsn8931087baaa5";
+            "";
 
     public static final String API_HOST =
             "deezerdevs-deezer.p.rapidapi.com";
